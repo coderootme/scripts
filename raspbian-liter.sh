@@ -20,3 +20,7 @@ mount -a
    echo ''
    echo 'dtoverlay=disable-bt'
 } >> /boot/config.txt
+{
+   echo ''
+   echo 'noarp'
+} >> /etc/dhcpcd.conf
