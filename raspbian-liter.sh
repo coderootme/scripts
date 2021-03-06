@@ -8,7 +8,7 @@ systemctl disable apt-daily-upgrade.timer apt-daily.timer man-db.timer
 swapoff -a
 rm /var/swap
 apt update
-apt -y purge bluez bluez-firmware pulseaudio*
+apt -y purge bluez bluez-firmware
 apt -y install vim tmux mc
 mkdir -p /tmpfs/
 {
