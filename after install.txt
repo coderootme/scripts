@@ -1,0 +1,1 @@
+- add 'noatime' to all mounts in fstab
