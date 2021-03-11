@@ -17,3 +17,4 @@ sudo su
 
 systemctl daemon-reload
 systemctl enable --now wifipower.service
+
