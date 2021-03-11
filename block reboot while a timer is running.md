@@ -14,20 +14,21 @@
 
 ## test.service
 
-     [Unit]
-     Description=test service
+    [Unit]
+    Description=test service
 
-     [Service]
-     Type=simple
-     ExecStart=/root/test.sh
-     #this should specify how long we wait to kill it:
-     TimeoutStopSec=60
+    [Service]
+    Type=simple
+    ExecStart=/root/test.sh
+    #this should specify how long we wait to kill it:
+    TimeoutStopSec=60
 
 
 ## test.sh
 
-     #!/bin/bash
+    #!/bin/bash
 
-     trap '' SIGTERM SIGINT
+    trap '' SIGTERM SIGINT
 
-     ... rest of script ...
+    ... rest of script ...
+
