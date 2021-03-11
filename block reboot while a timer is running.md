@@ -1,33 +1,33 @@
-==== test.timer: ====
+## test.timer
+
+    [Unit]
+    Description=test timer
+    Wants=multi-user.target
+    After=multi-user.target
+
+    [Timer]
+    OnCalendar=*:0/1
+
+    [Install]
+    WantedBy=timers.target
+
+
+## test.service
 
      [Unit]
-     Description=test timer
-     Wants=multi-user.target
-     After=multi-user.target
+     Description=test service
 
-     [Timer]
-     OnCalendar=*:0/1
-
-     [Install]
-     WantedBy=timers.target
+     [Service]
+     Type=simple
+     ExecStart=/root/test.sh
+     #this should specify how long we wait to kill it:
+     TimeoutStopSec=60
 
 
-==== test.service: ====
+## test.sh
 
-      [Unit]
-      Description=test service
+     #!/bin/bash
 
-      [Service]
-      Type=simple
-      ExecStart=/root/test.sh
-      #this should specify how long we wait to kill it:
-      TimeoutStopSec=60
+     trap '' SIGTERM SIGINT
 
-
-==== test.sh: ====
-
-      #!/bin/bash
-
-      trap '' SIGTERM SIGINT
-
-      ... rest of script ...
+     ... rest of script ...
