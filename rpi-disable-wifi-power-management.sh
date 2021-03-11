@@ -1,5 +1,7 @@
 #!/bin/bash
 
+sudo su
+
 {
    echo '[Unit]'
    echo 'Description=Disable WiFi power management'
@@ -13,4 +15,5 @@
    echo
 } > /lib/systemd/system/wifipower.service
 
+systemctl daemon-reload
 systemctl enable --now wifipower.service
