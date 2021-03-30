@@ -26,3 +26,19 @@ mount -a
 } >> /etc/dhcpcd.conf
 
 # also consider dtparam=audio=off in /boot/config.txt
+
+# also consider watchdog:
+
+sudo su
+echo 'dtparam=watchdog=on' >> /boot/config.txt
+reboot
+
+sudo su
+apt update
+apt install watchdog
+echo 'watchdog-device = /dev/watchdog' >> /etc/watchdog.conf
+echo 'watchdog-timeout = 15' >> /etc/watchdog.conf
+echo 'max-load-1 = 24' >> /etc/watchdog.conf
+echo 'interface = wlan0' >> /etc/watchdog.conf
+systemctl enable --now watchdog
+systemctl status watchdog
