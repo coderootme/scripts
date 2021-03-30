@@ -24,6 +24,20 @@ mount -a
    echo ''
    echo 'noarp'
 } >> /etc/dhcpcd.conf
+echo "" > /etc/motd
+{
+   echo '#!/bin/sh'
+   echo 'uname -sr'
+   echo 'echo ""'
+   echo 'echo -n "Overlay filesystem on root is now: "'
+   echo 'grep -q "boot=overlay" /proc/cmdline && echo -n "\033[0;32menabled" || echo -n "\033[0;31mdisabled"'
+   echo 'echo "\033[0m";'
+   echo 'echo -n "Boot partition is mounted as:      "'
+   echo 'findmnt /boot | grep -q " ro," && echo -n "\033[0;32mread-only" || echo -n "\033[0;31mwritable"'
+   echo 'echo "\033[0m"'
+   echo 'echo ""'
+} > /etc/update-motd.d/10-uname
+
 
 # also consider dtparam=audio=off in /boot/config.txt
 
