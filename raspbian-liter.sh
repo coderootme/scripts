@@ -56,3 +56,10 @@ echo 'max-load-1 = 24' >> /etc/watchdog.conf
 echo 'interface = wlan0' >> /etc/watchdog.conf
 systemctl enable --now watchdog
 systemctl status watchdog
+
+
+# history cleanup:
+
+unset HISTFILE
+echo > /home/pi/.bash_history
+echo | sudo tee /root/.bash_history
