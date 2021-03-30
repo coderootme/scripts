@@ -3,12 +3,14 @@
 # this makes raspbian lite even liter
 
 sudo su
+apt update
+apt -y purge avahi-daemon bluez bluez-firmware
+apt autoremove
 systemctl disable dphys-swapfile.service avahi-daemon.service rpi-eeprom-update.service
 systemctl disable apt-daily-upgrade.timer apt-daily.timer man-db.timer
 swapoff -a
 rm /var/swap
-apt update
-apt -y purge bluez bluez-firmware
+apt dist-upgrade
 apt -y install vim tmux mc
 mkdir -p /tmpfs/
 {
