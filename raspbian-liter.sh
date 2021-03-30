@@ -25,3 +25,4 @@ mount -a
    echo 'noarp'
 } >> /etc/dhcpcd.conf
 
+# also consider dtparam=audio=off in /boot/config.txt
