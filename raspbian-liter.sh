@@ -162,7 +162,7 @@ if confirm_action "Deploy /tmpfs/ ?" "y"; then
    echo_process 'mkdir /tmpfs/ ... '
    if mkdir -p /tmpfs/; then echo_success; else echo_fail; fi
    echo_process 'Editing fstab ... '
-   if grep -q '^tmpfs /tmpfs' /etc/fstab; then
+   if grep -q '^tmpfs /tmpfs/' /etc/fstab; then
       echo_success
    else
       if {
@@ -172,6 +172,30 @@ if confirm_action "Deploy /tmpfs/ ?" "y"; then
    fi
    echo_process 'Mounting fstab ... '
    if mount -a; then echo_success; else echo_fail; fi
+fi
+
+if confirm_action "Move /tmp/ to RAM?" "y"; then
+   echo_process 'Editing fstab ... '
+   if grep -q '^tmpfs /tmp/' /etc/fstab; then
+      echo_success
+   else
+      if {
+         echo ''
+         echo 'tmpfs /tmp/     tmpfs defaults,noatime,size=100M,mode=1777 0 0'
+      } | tee -a /etc/fstab > /dev/null 2>&1; then echo_success; else echo_fail; fi
+   fi
+fi
+
+if confirm_action "Move /var/log/ to RAM?" "y"; then
+   echo_process 'Editing fstab ... '
+   if grep -q '^tmpfs /var/log/' /etc/fstab; then
+      echo_success
+   else
+      if {
+         echo ''
+         echo 'tmpfs /var/log/ tmpfs defaults,noatime,size=100M,mode=0755 0 0'
+      } | tee -a /etc/fstab > /dev/null 2>&1; then echo_success; else echo_fail; fi
+   fi
 fi
 
 if confirm_action "Disable ARP ?" "y"; then
