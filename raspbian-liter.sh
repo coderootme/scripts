@@ -245,4 +245,6 @@ if confirm_action "Clear history?" "y"; then
    if rm -f /root/.bash_history; then echo_success; else echo_fail; fi
 fi
 
+echo
 echo 'All done! You should reboot now!'
+echo
