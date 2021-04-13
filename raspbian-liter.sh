@@ -155,7 +155,7 @@ fi
 if confirm_action "Run dist-upgrade?" "y"; then
    echo_process 'Upgrading ... '
    echo
-   if apt dist-upgrade; then echo_process; echo_success; else echo_process; echo_fail; fi
+   if apt dist-upgrade -y; then echo_process; echo_success; else echo_process; echo_fail; fi
 fi
 
 if confirm_action "Deploy /tmpfs/ ?" "y"; then
