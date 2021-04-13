@@ -212,7 +212,7 @@ fi
 
 if confirm_action "Run autoremove?" "y"; then
    echo_process 'Autoremoving ... '
-   if apt-get -qq autoremove; then echo_success; else c; fi
+   if apt-get -qq autoremove; then echo_success; else echo_fail; fi
 fi
 
 if confirm_action "Disable internal soundcard?" "y"; then
