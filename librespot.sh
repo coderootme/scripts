@@ -11,8 +11,6 @@ cargo build --no-default-features --features "alsa-backend" --release
 
 ## to update librespot:
 
-cd ~ || exit
-cargo update
-cd librespot || exit
+cd ~/librespot/ || exit
 git pull
 cargo build --no-default-features --features "alsa-backend" --release
