@@ -210,6 +210,18 @@ if confirm_action "Disable ARP ?" "y"; then
    fi
 fi
 
+if confirm_action "Use Google DNS ?" "y"; then
+   echo_process 'Setting DNS ... '
+   if grep -q '^static domain_name_servers=' /etc/dhcpcd.conf; then
+      echo_success
+   else
+      if {
+         echo ''
+         echo 'static domain_name_servers=8.8.8.8 8.8.4.4'
+      } | tee -a /etc/dhcpcd.conf > /dev/null 2>&1; then echo_success; else echo_fail; fi
+   fi
+fi
+
 if confirm_action "Customize MOTD?" "y"; then
    echo_process 'Customizing /etc/motd ... '
    if echo "" > /etc/motd; then echo_success; else echo_fail; fi
